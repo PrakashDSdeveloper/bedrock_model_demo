@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merck</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap/css/bootstrap.min.css') }}">
+    <!-- Optional Bootstrap Icons -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap-icons/bootstrap-icons.css') }}">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Your Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <div class="container header-conmtainer-align">
+        <div class="header-flexing">
+            <div class="header-flex-one">
+                <img src="{{ url_for('static', filename='static/images/logo.svg') }}" width="135px">
+            </div>
+            <div class="header-flex-two">
+                <h4 class="h4-headers" style="margin-bottom: 0px;">Conversational AI on Structured Database</h4>
+            </div>
+            <div class="header-flex-three">
+                <p style="margin-bottom: 0px ;color: #008d81;"></p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container css-form mt-5">
+    <div class="whole-css">
+        <div class="forms mt-3">
+            <div class="mb-3">
+                <label class="form-label">Enter Your Question</label>
+                <div class="input-group">
+                    <input type="text" id="chat-input" class="form-control input-con" placeholder="Type here...">
+                    <span class="input-group-text span-s" onclick="sendMessage()"><i class="fa fa-paper-plane"></i></span>
+                </div>
+                <button class="btn btn-sub mt-2" onclick="sendMessage()">Submit</button>
+            </div>
+
+            <div class="mt-5">
+                <label class="form-label">Response</label>
+                <textarea id="response-container" class="form-control" rows="10" readonly></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function sendMessage() {
+        var inputText = $('#chat-input').val();
+        $('#chat-input').val('');
+
+        if(inputText.trim() !== '') {
+            // Send the user's message
+            $.ajax({
+                url: '/chat',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({input_text: inputText}),
+                success: function(response) {
+                    // Display the AI's response
+                    $('#response-container').val('You: ' + inputText + '\nModel: ' + response.response);
+                }
+            });
+        }
+    }
+</script>
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="{{ url_for('static', filename='lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- Your Custom JS -->
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
