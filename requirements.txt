@@ -2,3 +2,9 @@ Flask
 langchain
 langchain_experimental
 python-dotenv
+pg8000
+psycopg2
+redshift_connector
+"redshift_connector[full]"
+boto3
+configparser
