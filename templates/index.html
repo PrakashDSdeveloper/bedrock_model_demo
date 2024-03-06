@@ -2,6 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
+     <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merck</title>
     <!-- Bootstrap CSS -->
@@ -12,6 +14,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Your Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -19,26 +23,34 @@
     <div class="container header-conmtainer-align">
         <div class="header-flexing">
             <div class="header-flex-one">
-                <img src="{{ url_for('static', filename='static/images/logo.svg') }}" width="135px">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" width="135px">
             </div>
             <div class="header-flex-two">
                 <h4 class="h4-headers" style="margin-bottom: 0px;">Conversational AI on Structured Database</h4>
-            </div>
-            <div class="header-flex-three">
-                <p style="margin-bottom: 0px ;color: #008d81;"></p>
             </div>
         </div>
     </div>
 </header>
 
 <div class="container css-form mt-5">
+    <div class="chat-container">
     <div class="whole-css">
         <div class="forms mt-3">
+            <div class="mb-3">
+                <label class="form-label">Select Your Database</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Redshift</option>
+                    <option value="1">Oracle</option>
+                    <!-- <option value="2">Azure</option>
+                    <option value="3">DB2</option> -->
+                  </select>
+            </div>
             <div class="mb-3">
                 <label class="form-label">Enter Your Question</label>
                 <div class="input-group">
                     <input type="text" id="chat-input" class="form-control input-con" placeholder="Type here...">
-                    <span class="input-group-text span-s" onclick="sendMessage()"><i class="fa fa-paper-plane"></i></span>
+                    <span class="input-group-text span-s" onclick="sendMessage()">
+                        <i class="fa fa-microphone"></i></span>
                 </div>
                 <button class="btn btn-sub mt-2" onclick="sendMessage()">Submit</button>
             </div>

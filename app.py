@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, render_template
-from test import demo_memory, demo_conversation
+from test import demo_memory, demo_conversation  # Import from app.py instead of test
 
 app = Flask(__name__)
 
@@ -16,4 +16,4 @@ def chat():
     return jsonify({'response': chat_response})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=8080)
+    app.run(host='0.0.0.0', port=8080)
